@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', cursive;
+}
+
+.content {
+  width: 85%;
+  margin: auto;
+}
+
+.clear {
+  clear: both;
+}
+
+.hidden {
+  display: none;
+}
+/* header */
+.header {
+  height: 50px;
+  width: 100%;
+  overflow: hidden;
+  background-color: #7bcaff;
+  position: relative;
+  margin: 0;
+  border-bottom: 1px solid black;
+}
+
+/* logo */
+.logo {
+  float: left;
+}
+
+.logo a {
+  margin: 0;
+}
+
+.logo a img {
+  width: 45px;
+  height: 45px;
+  padding-top: 3px;
+}
+
+/* lines */
+
+.lines{
+  float: right;
+  display: none;
+}
+
+
+/* navbar */
+
+.navbar ul {
+  display: flex;
+  list-style: none;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar ul li {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 7px;
+}
+
+.navbar ul li a {
+  color: #000000;
+  font-size: 25px;
+  text-decoration: none;
+}
+
+.navbar ul li a:hover {
+  -webkit-animation: texthover 0.5s forwards;
+          animation: texthover 0.5s forwards;
+}
+
+.navbar ul li a.active{
+  cursor: default;
+  animation: none;
+  -webkit-animation: none;
+  color: #ffffff;
+}
+
+
+/* icons */
+.icons {
+  position: absolute;
+  bottom: 10px;
+  right: 130px;
+  float: right;
+}
+
+.icons ul {
+  list-style: none;
+  text-align: center;
+  margin: 0;
+}
+
+.icons ul li {
+  display: inline-block;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.icons ul li a {
+  color: #000000;
+  font-size: 25px;
+  text-decoration: none;
+}
+
+.icons ul li:nth-child(5) {
+  padding-left: 35px;
+}
+
+.icons ul li a:hover {
+  -webkit-animation: texthover 0.5s forwards;
+          animation: texthover 0.5s forwards;
+}
+
+@-webkit-keyframes texthover {
+  from {
+    color: #000000;
+  }
+  to {
+    color: white;
+  }
+}
+
+@keyframes texthover {
+  from {
+    color: #000000;
+  }
+  to {
+    color: white;
+  }
+}
+
+
+/* footer */
+.footer {
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  background-color: #2e2d2d;
+  border-top: 1px solid #999999;
+}
+
+.footer p {
+  color: #c7c4c4;
+}
+/*# sourceMappingURL=main.css.map */

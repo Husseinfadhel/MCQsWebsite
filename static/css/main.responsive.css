@@ -1,0 +1,169 @@
+
+/**
+ * @file
+ * Main responsive stylesheet file.
+ */
+
+ 
+ /*****************************************************************************
+  * Large devices (large desktops, 1200px and up)
+  ****************************************************************************/
+  @media (max-width: 1200px) {}
+  /* Large devices (large desktops, 1200px and up) end */
+ 
+ /*****************************************************************************
+  * Medium devices (desktops, 1100px and up)
+  ****************************************************************************/
+  @media (max-width: 1100px) {
+    .content{
+        width: 100%;
+    }
+    .lines{
+        float: none;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        cursor: pointer;
+        right: 5%;
+        top: 50%;
+        transform: translate(-5%, -50%);
+    }
+    .line{
+        width: 30px;
+        height: 3px;
+        background-color: aliceblue;
+        margin: 5px;
+    }
+    nav{
+        position: fixed;
+        background-color: #7bcaff;
+        height: 100vh;
+        width: 100%;
+        clip-path: circle(100px at 90% -20%);
+        -webkit-clip-path: circle(100px at 90% -20%);
+        transition: all 1s ease-out;
+        z-index: 3;
+    }
+    nav.open{
+        clip-path: circle(1000px at 90% -10%);
+        -webkit-clip-path: circle(1000px at 90% -10%);
+    }
+    .logo{
+        float: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .navbar ul{
+        flex-direction: column;
+        margin-top: 20px;
+        padding: 0;
+    }
+    .navbar ul li{
+        margin-top: 20px;
+    }
+    .icons ul{
+       padding: 0;
+    }
+    .icons{
+        float: none;
+        display: flex;
+        position: static;
+        justify-content: center;
+        align-items: center;
+        margin-top: 40px;
+    }
+
+
+    .grades{
+        margin-bottom: 80px;
+    }
+    .grades .slider{
+        width: 90%;
+    }
+    .grades .prev {
+        position: absolute;
+        top: 35%;
+        left: 1%;
+        font-size: 2em;
+        color: #0b2f3d;
+    }
+    .grades .next {
+        position: absolute;
+        top: 35%;
+        right: 1%;
+        font-size: 2em;
+        color: #0b2f3d;
+    }
+    
+    section .mcq .delete-button{
+       right: 20%;
+   }
+   .home .btn-start{
+       top: 500px
+   }
+}
+ /* Medium devices (desktops, 1100px and up) end */
+ 
+ 
+ 
+ /*****************************************************************************
+  * Small devices (tablets, 768px and up)
+  ****************************************************************************/
+ @media (max-width: 768px) {
+    section .mcq .delete-button{
+        right: 30%;
+    }
+    section .mcq .edit-button{
+        right: 30%;
+    }
+    .home .BMC{
+        font-size: 25px;
+    }
+    .home .info{
+        font-size: 20px;
+    }
+    .about-section .main-body .pics{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .home .btn-start{
+        top: 550px;
+    }
+}
+ /* Small devices (tablets, 768px and up) end */
+
+/*****************************************************************************
+ * Extra small devices (phones, up to 520px)
+ ****************************************************************************/
+ @media (max-width: 520px) {
+     
+    section .mcq .delete-button{
+        right: 40%;
+    }
+    section .mcq .edit-button{
+        right: 40%;
+    }
+    .home .BMC{
+        font-size: 25px;
+    }
+    .home .info{
+        font-size: 20px;
+    }
+    .home .btn-start{
+        top: 650px;
+    }
+    .home{
+        height: 800px;
+    }
+ }
+ 
+ /* Extra small devices (phones, up to 767px) end */
+
+ 
+ 
+ 
+ /*****************************************************************************
+  * Various other styles
+  ****************************************************************************/
+ 
+ /* Various other styles end */
