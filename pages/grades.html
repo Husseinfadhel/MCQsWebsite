@@ -1,0 +1,22 @@
+{% extends 'layouts/main.html' %}
+{% block animation %}fadeIn{% endblock %}
+{% block title %}BMCLearn MCQs Grades page{% endblock %}
+{% block content %}
+
+<!-- Grades -->
+<div class="fixed-pic">
+<div class="grades">
+    <i class="fa fa-arrow-circle-left prev"></i>
+    <div class="content slider">
+        {% for grade in data %}
+        <div class="grade">
+            <p class="grade-num">Grade {{grade.num}}</p>
+            <img class="grade-pic" src="/static/img/grades/{{grade.num}}.jpg"/>
+            <a href="grades/{{grade.id}}"><button class="btn-more">Learn More</button></a>
+        </div>
+        {% endfor %}
+    </div>
+    <i class="fa fa-arrow-circle-right next"></i>
+</div>
+
+{% endblock %}

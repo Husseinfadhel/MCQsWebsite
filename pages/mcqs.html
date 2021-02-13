@@ -1,0 +1,94 @@
+{% extends 'layouts/main.html' %}
+{% block animation %}fadeIn{% endblock %}
+{% block title %}BMCLearn MCQs page{% endblock %}
+{% block content %}
+
+
+<section>
+    <div class="content">
+        {% for mcq in data.items %}
+        <div class="mcq">
+            <p class="question">{{ mcq.question }}</p>
+            <div class="choices">
+                <p class="choice">A- {{ mcq.choice_A }}</p>
+                <p class="choice">B- {{ mcq.choice_B }}</p>
+                <p class="choice">C- {{ mcq.choice_C }}</p>
+                <p class="choice">D- {{ mcq.choice_D }}</p>
+                {% if mcq.choice_E != None and mcq.choice_E != '' %}
+                <p class="choice">E- {{ mcq.choice_E }}</p>
+                {% endif %}
+            </div>
+            <p class="answer">{{ mcq.answer }}</p>
+            <button id="show-answer">Show answer</button>
+            {% if userinfo is defined %}
+            <button data-id ="{{ mcq.id }}" class="delete-button">&cross;</button>
+			<div id="deleted" class="hidden">Successfuly Deleted!</div>
+            <button data-id ="{{ mcq.id }}" class="edit-button">Edit</button>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <div class="pages">
+        {% if userinfo is defined %}
+        <button id="add-mcq">Add MCQ</button>
+        {% endif %}
+        {% for page_num in data.iter_pages(left_edge=1, right_edge=1, left_current=2, right_current=2) %}
+            {% if page_num %}
+                {% if data.page == page_num %}
+                    <a class="button" href="?page={{page_num}}">{{page_num}}</a>
+                {% else %}
+                    <a class="button-outline" href="?page={{page_num}}">{{page_num}}</a>
+                {% endif %}
+            {% else %}
+            ...
+            {% endif %}
+        {% endfor %}
+        </div>  
+    </div>
+</section>
+{% if userinfo is defined %}
+<script>
+	const deleteButtons = document.querySelectorAll('.delete-button')
+	for(let i=0; i < deleteButtons.length; i++){
+		const deleteButton = deleteButtons[i];
+		deleteButton.onclick = function(e){
+			console.log('event',e);
+			const mcqId = e.target.dataset['id']
+			fetch('/mcqs/'+mcqId, {
+				method : 'DELETE'
+			})
+			.then(function(){
+                        document.getElementById('deleted').className = '';
+                    })
+			.catch(function() {
+				document.getElementById('deleted').className = 'hidden';
+			})
+		}
+    }
+    
+    const editButtons = document.querySelectorAll('.edit-button')
+	for(let i=0; i < editButtons.length; i++){
+		const editButton = editButtons[i];
+		editButton.onclick = function(e){
+			const mcqsId = e.target.dataset['id']
+			    location.href = "/mcqs/"+mcqsId+"/edit";
+		}
+    }
+    
+    document.getElementById("add-mcq").onclick = function () {
+        location.href = "/mcqs/add";
+    };
+</script>
+{% endif %}
+<script>
+    const answer = document.querySelectorAll(".answer")
+    const answerbtns = document.querySelectorAll("#show-answer");
+    for(let i=0; i < answerbtns.length; i++){
+		const answerbtn = answerbtns[i];
+		answerbtn.onclick = function(){
+            answer[i].classList.toggle("show");
+        }
+    }
+</script>
+
+
+{% endblock %}

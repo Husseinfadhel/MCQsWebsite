@@ -1,0 +1,83 @@
+<html class="animated {% block animation %}{% endblock %}">
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <!-- meta -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <!-- /meta -->
+        <link type="text/css" rel="stylesheet" href="/static/css/layout.main.css" />
+        <link type="text/css" rel="stylesheet" href="/static/css/main.css" />
+        <link type="text/css" rel="stylesheet" href="/static/css/main.responsive.css" />
+        <link type="text/css" rel="stylesheet" href="/static/css/layout.forms.css" />
+        <link type="text/css" rel="stylesheet" href="/static/css/vendors/font-awesome.min.css" />
+        <link type="text/css" rel="stylesheet" href="/static/css/vendors/animate.min.css" />
+        <link type="text/css" rel="stylesheet" href="/static/css/bootstrap.min.css">
+        <script src="/static/js/libs/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="/static/js/libs/slick.min.js"></script>
+    </head>
+    <body>
+        <div class="header">
+            <div class="content">
+                <div class="logo">
+                <a href="/"><img src="/static/img/logo.png" alt="logo"></a>
+                </div>
+                <div class="lines">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </div>
+                <nav>
+                    <div class="navbar">
+                        <ul>
+                            <li><a {% if request.path == url_for('index') %} class="active" {% endif %} href="/">Home</a></li>
+                            <li><a {% if request.endpoint == 'about' %} class="active" {% endif %} href="{{ url_for('about') }}">About</a></li>
+                            <li><a {% if request.endpoint == 'bmc' %} class="active" {% endif %} href="https://www.bmclearn.com">BMC</a></li>
+                        </ul>
+                    </div>
+                    <div class="icons">
+                        <ul>
+                            <li><a href="https://www.facebook.com/BMCNEWCIRCULUM" class="fa fa-facebook"></a></li>
+                            <li><a href="#" class="fa fa-instagram"></a></li>
+                            <li><a href="#" class="fa fa-twitter"></a></li>
+                            <li><a href="#" class="fa fa-google"></a></li>
+                            {% if userinfo is defined %}
+                            <li><a href="/" class="fa fa-user" id="my-pro"> {{userinfo['nickname']}}</a></li>
+                            <li><a href="/logout" class="fa fa-sign-out"></a></li>
+                            {% else %}
+                            <li><a href="/login" class="fa fa-sign-in"></a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Begin page content -->
+            <div class="form-only-page">
+
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-warning fade in">
+                        <a class="close" data-dismiss="alert">&times;</a>
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+                {% endwith %}
+
+                {% block content %}{% endblock %}
+
+            </div>
+        <!-- End page content -->
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="content">
+                <p> copyright &copy; 2020 by Sajjad Hasanain </p>
+            </div>
+        </div>
+        <script type="text/javascript" src="/static/js/script.js" defer></script>
+    </body>
+</html>

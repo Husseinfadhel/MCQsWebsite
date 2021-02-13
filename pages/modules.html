@@ -1,0 +1,60 @@
+{% extends 'layouts/main.html' %}
+{% block animation %}fadeIn{% endblock %}
+{% block title %}BMCLearn MCQs Modules page{% endblock %}
+{% block content %}
+
+<!-- Grades -->
+<div class="fixed-pic">
+<div class="grades">
+    <i class="fa fa-arrow-circle-left prev"></i>
+    <div class="content slider">
+        {% for module in data %}
+        <div class="grade">
+            <p class="grade-num">{{module.name}} module</p>
+            <img class="grade-pic" src="/static/img/modules/{{module.name}}.jpg"/>
+            <a href="/modules/{{module.id}}/mcqs"><button class="btn-more">Learn More</button></a>
+            {% if userinfo is defined %}
+            <button data-id ="{{ module.id }}" class="delete-button">&cross;</button>
+			<div id="deleted" class="hidden">Successfuly Deleted!</div>
+            <button data-id ="{{ module.id }}" class="edit-button">Edit</button>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    <i class="fa fa-arrow-circle-right next"></i>
+</div>
+{% if userinfo is defined %}
+<button id="add-module">Add module</button>
+<script>
+	const deleteButtons = document.querySelectorAll('.delete-button')
+	for(let i=0; i < deleteButtons.length; i++){
+		const deleteButton = deleteButtons[i];
+		deleteButton.onclick = function(e){
+			console.log('event',e);
+			const moduleId = e.target.dataset['id']
+			fetch('/modules/'+moduleId, {
+				method : 'DELETE'
+			})
+			.then(function(){
+                        document.getElementById('deleted').className = '';
+                    })
+			.catch(function() {
+				document.getElementById('deleted').className = 'hidden';
+			})
+		}
+    }
+    const editButtons = document.querySelectorAll('.edit-button')
+	for(let i=0; i < editButtons.length; i++){
+		const editButton = editButtons[i];
+		editButton.onclick = function(e){
+			const moduleId = e.target.dataset['id']
+			    location.href = "/modules/"+moduleId+"/edit";
+		}
+    }
+    document.getElementById("add-module").onclick = function () {
+        location.href = "/modules/add";
+    };
+</script>
+{% endif %}
+
+{% endblock %}
