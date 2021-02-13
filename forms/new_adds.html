@@ -1,0 +1,73 @@
+{% extends 'layouts/form.html' %}
+{% block animation %}rollIn{% endblock %}
+{% block title %}BMCLearn adds page{% endblock %}
+{% block content %}
+
+{% if request.path == url_for('add_grade_form') %}
+
+<div class="form-wrapper">
+    <form method="post" class="form">
+        <h3 class="form-heading">List a new grade</h3>
+        <div class="form-group">
+        <label for="num">Grade Number</label>
+        {{ form.num(class_ = 'form-control', autofocus = true) }}
+        <input type="submit" value="Add Grade" class="btn btn-primary btn-lg btn-block">
+    </form>
+</div>
+
+{% endif %}
+
+
+{% if request.path == url_for('add_semester_form') %}
+
+<div class="form-wrapper">
+    <form method="post" class="form">
+        <h3 class="form-heading">List a new semester</h3>
+            <div class="form-group">
+            <label for="num">Semester Number</label>
+            {{ form.num(class_ = 'form-control', autofocus = true) }}
+        <div class="form-group">
+            <!-- <label for="grade_id">Grade ID</label>
+            <small>ID can be found on the Grade's Page</small>
+            {{ form.grade_id(class_ = 'form-control', autofocus = true) }} -->
+            <label for="grade_id">Grade ID</label>
+            <select name="grade_id">
+                {% for grade in grades %}
+                <option value="{{ grade.id }}">{{grade.num}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <input type="submit" value="Add Semester" class="btn btn-primary btn-lg btn-block">
+    </form>
+</div>
+
+{% endif %}
+
+{% if request.path == url_for('add_module_form') %}
+
+<div class="form-wrapper">
+    <form method="post" class="form">
+        <h3 class="form-heading">List a new module</h3>
+            <div class="form-group">
+            <label for="name">Module Name</label>
+            {{ form.name(class_ = 'form-control', autofocus = true) }}
+        <div class="form-group">
+            <label for="grade_id">Grade</label>
+            <select name="grade_id">
+                {% for grade in grades %}
+                <option value="{{ grade.id }}">{{grade.num}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="semester_id">Semester</label>
+            {{ form.semester_id(class_ = 'form-control') }}
+        </div>
+        <input type="submit" value="Add Module" class="btn btn-primary btn-lg btn-block">
+    </form>
+</div>
+
+{% endif %}
+
+
+{% endblock %}

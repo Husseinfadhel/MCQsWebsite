@@ -1,0 +1,49 @@
+{% extends 'layouts/form.html' %}
+{% block animation %}bounceInDown{% endblock %}
+{% block title %}BMCLearn MCQ adding page{% endblock %}
+{% block content %}
+
+<div class="form-wrapper">
+    <form method="post" class="form">
+        <h3 class="form-heading">List a new mcq</h3>
+            <div class="form-group">
+            <label for="name">question</label>
+            {{ form.question(class_ = 'form-control', autofocus = true) }}
+        <div class="form-group">
+            <label for="choice_A">Choice A</label>
+            {{ form.choice_A(class_ = 'form-control', autofocus = true) }}
+        </div>
+        <div class="form-group">
+            <label for="choice_B">Choice B</label>
+            {{ form.choice_B(class_ = 'form-control', autofocus = true) }}
+        </div>
+        <div class="form-group">
+            <label for="choice_C">Choice C</label>
+            {{ form.choice_C(class_ = 'form-control', autofocus = true) }}
+        </div>
+        <div class="form-group">
+            <label for="choice_D">Choice D</label>
+            {{ form.choice_D(class_ = 'form-control', autofocus = true) }}
+        </div>
+        <div class="form-group">
+            <label for="choice_E">Choice E</label>
+            <small>Not required</small>
+            {{ form.choice_E(class_ = 'form-control', autofocus = true) }}
+        </div>
+        <div class="form-group">
+            <label for="answer">answer Letter</label>
+            <input type="text" name="answer" class="form-control" maxlength=1 required>
+        </div>
+        <div class="form-group">
+            <label for="module_id">Module</label>
+            <select name="module_id">
+                {% for module in modules %}
+                <option value="{{ module.id }}">{{module.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <input type="submit" value="Add MCQ" class="btn btn-primary btn-lg btn-block">
+    </form>
+</div>
+
+{% endblock %}
